@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  gap: 12px;
+}
+
+:host.is-mine {
+  display: flex;
+  justify-self: end;
+  text-align: right;
+
+  .message-container {
+    order: -1;
+  }
+
+  .user-name-time {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  .name {
+    order: 1;
+  }
+
+  .message-text {
+    padding: 8px 16px;
+    background: var(--primary-color);
+    color: var(--dark-color);
+    font-weight: 500;
+    display: inline-block;
+    max-width: 200px;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: break-word;
+    border-radius: 50px;
+  }
+}
+
+.message-text {
+  padding: 8px 16px;
+  background: var(--message-color);
+  color: var(--light-color);
+  font-weight: 500;
+  display: inline-block;
+  max-width: 200px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  border-radius: 50px;
+}

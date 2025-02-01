@@ -3,5 +3,5 @@ import {chatsRoutes} from "./chat/chat-page/chastRoutes";
 
 export const routes: Routes = [{
   path: 'chats',
-  loadChildren: () => chatsRoutes
+  loadChildren: () => chatsRoutes,
 }];
