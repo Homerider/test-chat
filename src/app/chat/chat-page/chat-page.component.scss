@@ -1,0 +1,12 @@
+:host {
+  background: var(--dark-color);
+  border: 1px solid var(--light-color);
+  display: grid;
+  margin: 100px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  height: 500px;
+}

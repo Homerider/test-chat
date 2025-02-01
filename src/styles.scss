@@ -1,7 +1,36 @@
 :root {
-  --dark-color: #000000
+  --dark-color: #000000;
+  --dark-active-color: #161616;
+  --light-color: #ffffff;
+  --primary-color: #ae7aff;
+  --gray-color: #5f646d;
+  --dark-hover-color: #161616;
+  --light-transparent-color: rgba(255, 255, 255, 0.75);
+  --message-color: #404040;
+
+  --light-border: 1px solid var(--light-color);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-color: var(--dark-color);
+  height: 100vh;
+  font-family: 'JetBrains Mono', sans-serif;
+  background: var(--dark-color);
+  color: var(--light-color);
+  background-image: url(/assets/imgs/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.medium-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
 }
