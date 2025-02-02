@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {ChatPageComponent} from "./chat/chat-page/chat-page.component";
+import {TabsService} from "./data/services/tabs.service";
 
 
 @Component({
@@ -11,4 +12,11 @@ import {ChatPageComponent} from "./chat/chat-page/chat-page.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  #tabsService = inject(TabsService)
+
+  constructor() {
+    onbeforeunload = () => {
+      this.#tabsService.beforeLeave()
+    }
+  }
 }

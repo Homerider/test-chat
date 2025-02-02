@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, DestroyRef, ElementRef, HostListener, inject, Renderer2} from '@angular/core';
+import {Component, inject, OnDestroy} from '@angular/core';
 import {ChatMessageComponent} from "./chat-message/chat-message.component";
 import {MessageInputComponent} from "../../common-ui/message-input/message-input.component";
-import {debounceTime, fromEvent} from "rxjs";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {ChatMessageService} from "../../data/services/chat.service";
+import {BroadcastMessageType} from "../../data/interfaces/broadcast-message.interface";
+import {TabsService} from "../../data/services/tabs.service";
 
 @Component({
   selector: 'app-chat-message-wrapper',
@@ -14,29 +15,31 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
   templateUrl: './chat-message-wrapper.component.html',
   styleUrl: './chat-message-wrapper.component.scss'
 })
-export class ChatMessageWrapperComponent implements AfterViewInit {
-  hostElement = inject(ElementRef)
-  r2 = inject(Renderer2)
-  destroyRef = inject(DestroyRef)
+export class ChatMessageWrapperComponent implements OnDestroy {
+  #chatService = inject(ChatMessageService)
+  tabNumber = inject(TabsService).currentTabNumber
 
-  @HostListener('window:resize')
-  onWindowResize() {
-    this.resizeFeed()
+  messages = this.#chatService.messages
+  whoTyping = this.#chatService.whoTyping
+
+  onMessageCreated(messageText: string) {
+    this.#chatService.sendMessage({
+      id: Math.random(),
+      type: BroadcastMessageType.TEXT,
+      text: messageText,
+      tabNumber: this.tabNumber()
+    })
   }
 
-  ngAfterViewInit() {
-    this.resizeFeed()
-
-    fromEvent(window, 'resize')
-      .pipe(debounceTime(500), takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.resizeFeed()
-      })
+  onTyping(isTyping: boolean) {
+    this.#chatService.sendMessage({
+      type: BroadcastMessageType.TYPING,
+      isTyping,
+      tabNumber: this.tabNumber()
+    })
   }
 
-  resizeFeed() {
-    const {top} = this.hostElement.nativeElement.getBoundingClientRect()
-    const height = window.innerHeight - top - 28
-    this.r2.setStyle(this.hostElement.nativeElement, 'height', `${height}px`)
+  ngOnDestroy() {
+    this.#chatService.closeChanel()
   }
 }

@@ -1,13 +1,13 @@
 <app-avatar-user  class="size32"></app-avatar-user>
 
 <textarea
-  [(ngModel)]="postText"
+  [formControl]="messageTextControl"
   class="hidden-textarea"
   (input)="onTextAreaInput($event)"
   (keyup.enter)="onKeyUp()"
   placeholder="Введите сообщение"></textarea>
 
 
-<button class="btn-icon" (click)="onCreatePost()">
+<button class="btn-icon" (click)="sendMessage()">
   <svg icon="send-message" class="svg16"></svg>
 </button>

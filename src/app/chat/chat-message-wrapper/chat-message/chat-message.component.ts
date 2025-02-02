@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, input} from '@angular/core';
 import {AvatarUserComponent} from "../../../common-ui/avatar-user/avatar-user.component";
+import {ChatMessage} from "../../../data/interfaces/chat-message.interface";
 
 @Component({
   selector: 'app-chat-message',
@@ -11,5 +12,5 @@ import {AvatarUserComponent} from "../../../common-ui/avatar-user/avatar-user.co
   styleUrl: './chat-message.component.scss'
 })
 export class ChatMessageComponent {
-
+  message = input<ChatMessage>()
 }

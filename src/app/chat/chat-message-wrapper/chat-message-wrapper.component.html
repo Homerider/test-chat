@@ -1,7 +1,16 @@
 <div class="messages-wrapper">
-<app-chat-message></app-chat-message>
+  @for (message of messages(); track message.id) {
+    <app-chat-message
+      [class.is-mine]="message.isMine"
+      [message]="message"
+    ></app-chat-message>
+  }
 </div>
 
 <footer class="messages__footer">
-<app-message-input></app-message-input>
+  {{ whoTyping() }}
+  <app-message-input
+    (created)="onMessageCreated($event)"
+    (typing)="onTyping($event)"
+  ></app-message-input>
 </footer>

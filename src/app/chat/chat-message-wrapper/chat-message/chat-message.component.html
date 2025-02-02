@@ -1,13 +1,15 @@
+@if (message(); as message) {
 <app-avatar-user class="size32"></app-avatar-user>
 
 <div class="message-container">
   <div class="user-name">
     <span class="name medium-text mb8">
-				Вкладка № 2
+				Вкладка №{{ message.tabNum }}
 			</span>
   </div>
 
   <div class="message-text medium-text">
-    Как дела?
+    {{ message.text }}
   </div>
 </div>
+}

@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
-import {ChatListComponent} from "../chat-list/chat-list.component";
+import {Component, inject} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
-import {ChatHeaderComponent} from "../chat-header/chat-header.component";
+import {ChatMessageWrapperComponent} from "../chat-message-wrapper/chat-message-wrapper.component";
+import {ChatMessageService} from "../../data/services/chat.service";
+import {TabsService} from "../../data/services/tabs.service";
 
 @Component({
   selector: 'app-chat-page',
   standalone: true,
   imports: [
-    ChatListComponent,
     RouterOutlet,
-    ChatHeaderComponent
+    ChatMessageWrapperComponent,
   ],
   templateUrl: './chat-page.component.html',
   styleUrl: './chat-page.component.scss'
 })
 export class ChatPageComponent {
-
+  tab = inject(TabsService).currentTabNumber
 }
