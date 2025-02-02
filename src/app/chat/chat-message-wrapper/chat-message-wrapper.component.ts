@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnDestroy} from '@angular/core';
 import {ChatMessageComponent} from "./chat-message/chat-message.component";
 import {MessageInputComponent} from "../../common-ui/message-input/message-input.component";
 import {ChatMessageService} from "../../data/services/chat.service";
@@ -12,6 +12,7 @@ import {TabsService} from "../../data/services/tabs.service";
     ChatMessageComponent,
     MessageInputComponent
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './chat-message-wrapper.component.html',
   styleUrl: './chat-message-wrapper.component.scss'
 })

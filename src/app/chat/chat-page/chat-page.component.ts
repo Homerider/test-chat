@@ -1,8 +1,8 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {ChatMessageWrapperComponent} from "../chat-message-wrapper/chat-message-wrapper.component";
-import {ChatMessageService} from "../../data/services/chat.service";
-import {TabsService} from "../../data/services/tabs.service";
+import {AvatarUserComponent} from "../../common-ui/avatar-user/avatar-user.component";
+import {ChatBtnComponent} from "../chat-btn/chat-btn.component";
 
 @Component({
   selector: 'app-chat-page',
@@ -10,10 +10,12 @@ import {TabsService} from "../../data/services/tabs.service";
   imports: [
     RouterOutlet,
     ChatMessageWrapperComponent,
+    AvatarUserComponent,
+    ChatBtnComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './chat-page.component.html',
   styleUrl: './chat-page.component.scss'
 })
 export class ChatPageComponent {
-  tab = inject(TabsService).currentTabNumber
 }

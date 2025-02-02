@@ -3,6 +3,16 @@
   border: 1px solid var(--light-color);
   display: grid;
   margin: 100px;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 180px 1fr;
   height: 500px;
+}
+
+@media (max-width: 768px) {
+  :host {
+    grid-template-columns: auto;
+  }
+
+  button[chats] {
+    height: 100px;
+  }
 }

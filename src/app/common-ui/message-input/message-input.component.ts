@@ -1,4 +1,4 @@
-import {Component, inject, output, Renderer2} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, output, Renderer2} from '@angular/core';
 import {AvatarUserComponent} from "../avatar-user/avatar-user.component";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SvgIconComponent} from "../svg-icon/svg-icon";
@@ -16,6 +16,7 @@ const TYPING_TIMEOUT_MS = 300
     SvgIconComponent,
     ReactiveFormsModule
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './message-input.component.html',
   styleUrl: './message-input.component.scss'
 })
