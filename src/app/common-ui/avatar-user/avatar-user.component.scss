@@ -1,11 +1,13 @@
-img {
+.avatar {
   width: 112px;
   height: 112px;
+  background-color: var(--light-transparent-color);
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid var(--primary-color);
 }
 
-:host.size32 img {
+:host.size32 .avatar {
   width: 32px;
   height: 32px;
 }
