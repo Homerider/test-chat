@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, Component, inject, OnDestroy} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import {ChatMessageComponent} from "./chat-message/chat-message.component";
 import {MessageInputComponent} from "../../common-ui/message-input/message-input.component";
 import {ChatMessageService} from "../../data/services/chat.service";
@@ -16,12 +24,21 @@ import {TabsService} from "../../data/services/tabs.service";
   templateUrl: './chat-message-wrapper.component.html',
   styleUrl: './chat-message-wrapper.component.scss'
 })
-export class ChatMessageWrapperComponent implements OnDestroy {
+export class ChatMessageWrapperComponent implements OnDestroy, AfterViewChecked {
   #chatService = inject(ChatMessageService)
   tabNumber = inject(TabsService).currentTabNumber
 
   messages = this.#chatService.messages
   whoTyping = this.#chatService.whoTyping
+
+  @ViewChild('messagesWrapper') messagesWrapper!: ElementRef;
+
+  ngAfterViewChecked() {
+    if (this.messagesWrapper) {
+      const element = this.messagesWrapper.nativeElement;
+      element.scrollTop = element.scrollHeight;
+    }
+  }
 
   onMessageCreated(messageText: string) {
     this.#chatService.sendMessage({

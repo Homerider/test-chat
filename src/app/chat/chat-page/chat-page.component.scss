@@ -10,6 +10,7 @@
 @media (max-width: 768px) {
   :host {
     grid-template-columns: auto;
+    height: 650px;
   }
 
   button[chats] {
